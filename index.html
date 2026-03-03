@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>הצטרפות לקבוצת VIP - המתנה קצרה</title>
+    <style>
+        /* הגדרות פונט ורקע כללי */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #fdf2f8 0%, #f3e8ff 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #333;
+        }
+        
+        /* קונטיינר מרכזי עם עיצוב נעים */
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 100%;
+            border: 2px solid #e0e7ff;
+            transform: translateY(0);
+        }
+        
+        /* אייקון עם אנימציה */
+        .icon { 
+            font-size: 60px; 
+            margin-bottom: 20px;
+            color: #8b5cf6;
+            animation: pulse 2s infinite;
+        }
+        
+        /* כותרת ראשית */
+        h1 { 
+            color: #8b5cf6; 
+            margin-bottom: 10px;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        /* כותרת משנית / הסבר */
+        h2 {
+            color: #6b7280;
+            font-weight: normal;
+            margin-bottom: 30px;
+            font-size: 18px;
+        }
+        
+        /* טקסט סטטוס */
+        .loading-text { 
+            font-size: 16px; 
+            margin-top: 20px;
+            color: #6b7280;
+        }
+        
+        /* ספינר (גלגל טעינה) */
+        .spinner {
+            border: 4px solid rgba(139, 92, 246, 0.1);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border-left-color: #8b5cf6;
+            animation: spin 1s ease infinite;
+            margin: 20px auto;
+        }
+        
+        /* תיבת סטטוס ירוקה */
+        .status {
+            background: #dcfce7;
+            color: #166534;
+            padding: 10px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            margin: 15px 0;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        /* קישור גיבוי (כפתור ידני) */
+        .backup-link {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+        }
+        
+        .backup-btn {
+            background: #25D366;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.4);
+        }
+        
+        .backup-btn:hover {
+            background: #20b85a;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(37, 211, 102, 0.5);
+        }
+        
+        /* אנימציות */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        /* רספונסיביות למובייל */
+        @media (max-width: 480px) {
+            .container { 
+                padding: 30px 20px; 
+                margin: 10px;
+            }
+            h1 { font-size: 24px; }
+            h2 { font-size: 16px; }
+            .backup-btn { padding: 10px 20px; font-size: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon">🚀</div>
+        <h1>מיד מצטרף/ת לקבוצה!</h1>
+        <h2>פותחים/ות לך את וואטסאפ...</h2>
+        
+        <div class="status">✅ מעבדים את הבקשה</div>
+        
+        <div class="spinner"></div>
+        <p class="loading-text">מעבירים אותך אוטומטית תוך שניות ספורות</p>
+        
+        <div class="backup-link">
+            <p><small>לא עובד? לחץ/י כאן:</small></p>
+            <a href="#" class="backup-btn" id="backup-whatsapp-link">
+                📱 הצטרף/י לקבוצה ידנית
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // *** רשימת הקבוצות המלאה שלך (29 קבוצות) ***
+        const WHATSAPP_GROUPS = [
+            'Lem2imZ9RrA0FVh4brDcrg', 'Hgiqgj9lUJAByeToPTGwVo', 'Dgkx0K8KQZOBHe4yCJAfYM',
+            'E0SSept47K2339QngQKYlM', 'H6hIQDfCXYq0u7SkRFBAQa', 'L7jlrsDP6F88834HEJFk4N',
+            'GyJuG9iLOiu7bslizSvjfN', 'GwISLYKaOW9GE6fUv9q9BS', 'Ik3UTQ8JJI3IJTYaCDfyR1',
+            'HoL6F41U5027sqToZ9tLlS', 'GVYiswGnuh76sGp3N2mpvQ', 'L63iIDeleUF6FECQgkarxN',
+            'JsoUQukSJpf68DXAfSDzl1', 'CwZGDsNRPFRG25pSKOeJ57', 'KNC63eGLJjs7yCwtOkp2w2',
+            'KiauMRed47T6x6xceqjp49', 'I57gqxlwpKeGryAGAchgKJ', 'BZLzmVO6HN53oMDnc1ybCa',
+            'JDWFq2cnuAp9z8TQR0EKHM', 'EtK89pHcLp96YN4S5tzvqM', 'CjnFFMHD4Qk62989HbRe42',
+            'Fc2LnWE59tjB3Zq4xN156I', 'HQSazYaMnNzJz63fC5RDBf', 'F8XXrv2UnOYGx5SboKtPTY',
+            'KxxbRODukK16P0BIPOPd90', 'Irp0Lx5ScqQAH3b1Vii39M', 'BkFqv6JO5eKAvMvXjCDHzk',
+            'BnpVsiBfpaEIsGHUxXe0L9', 'E5Jsv9ru0w722ogoJ09qRQ'
+        ];
+
+        // הגרלת קבוצה אחת מתוך הרשימה בכל טעינת דף
+        const randomGroupIndex = Math.floor(Math.random() * WHATSAPP_GROUPS.length);
+        const WHATSAPP_GROUP_CODE = WHATSAPP_GROUPS[randomGroupIndex];
+
+        // בניית הקישורים
+        const webLink = `https://chat.whatsapp.com/${WHATSAPP_GROUP_CODE}`;
+        const appLink = `whatsapp://chat?code=${WHATSAPP_GROUP_CODE}`; 
+
+        function attemptToOpenApp() {
+            // ניסיון ראשון - פתיחת האפליקציה ישירות
+            window.location.href = appLink;
+
+            // גיבוי - אם האפליקציה לא נפתחה תוך 1.2 שניות, העברה לגרסת הווב
+            setTimeout(() => {
+                window.location.href = webLink;
+            }, 1200); 
+        }
+
+        // עדכון טקסטים חזותיים בזמן ההמתנה
+        function updateStatus() {
+            const statusElement = document.querySelector('.status');
+            const loadingTextElement = document.querySelector('.loading-text');
+            
+            setTimeout(() => {
+                statusElement.innerHTML = '🔄 מתחבר/ת לוואטסאפ';
+                loadingTextElement.innerHTML = 'פותחים/ות את האפליקציה עבורך...';
+            }, 800);
+            
+            setTimeout(() => {
+                statusElement.innerHTML = '📱 מפעיל/ה וואטסאפ';
+            }, 1500);
+        }
+
+        // הפעלה אוטומטית לאחר שנייה אחת
+        window.onload = function() {
+            // עדכון הקישור בכפתור הגיבוי הידני
+            document.getElementById('backup-whatsapp-link').href = webLink;
+
+            setTimeout(() => {
+                updateStatus();
+                attemptToOpenApp();
+            }, 1000);
+        };
+    </script>
+</body>
+</html>
