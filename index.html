@@ -5,6 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ZARA & מותגים מוסתרים באלי אקספרס - הצטרפו לקבוצה!</title>
     <meta name="description" content="קבלו כל יום את הדילים הכי חמים על מותגים כמו ZARA, BERSHKA, MANGO ועוד - ישירות מאלי אקספרס ברבע מחיר!">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-M6KL84H36Q"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-M6KL84H36Q');
+    </script>
+    <!-- Facebook Pixel -->
+    <script>
+        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+        n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+        document,'script','https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', 'YOUR_PIXEL_ID');
+        fbq('track', 'PageView');
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&display=swap" rel="stylesheet">
     <style>
@@ -638,13 +656,25 @@
 
     function joinWhatsApp(e) {
         e.preventDefault();
+        // Track click in Google Analytics
+        gtag('event', 'click_whatsapp', { event_category: 'CTA', event_label: 'WhatsApp Join' });
+        // Track in Facebook Pixel
+        if (typeof fbq !== 'undefined') fbq('track', 'Lead', { content_name: 'WhatsApp Join' });
+
         const code = WHATSAPP_GROUPS[Math.floor(Math.random() * WHATSAPP_GROUPS.length)];
-        // Try app first, fallback to web
         window.location.href = `whatsapp://chat?code=${code}`;
         setTimeout(() => {
             window.location.href = `https://chat.whatsapp.com/${code}`;
         }, 1200);
     }
+
+    // Track Telegram clicks
+    document.querySelectorAll('.cta-telegram').forEach(btn => {
+        btn.addEventListener('click', () => {
+            gtag('event', 'click_telegram', { event_category: 'CTA', event_label: 'Telegram Join' });
+            if (typeof fbq !== 'undefined') fbq('track', 'Lead', { content_name: 'Telegram Join' });
+        });
+    });
 
     // Dynamic "joined today" counter (random but consistent per day)
     const today = new Date().toDateString();
