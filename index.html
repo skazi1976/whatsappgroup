@@ -3,215 +3,656 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>הצטרפות לקבוצת VIP - המתנה קצרה</title>
+    <title>ZARA & מותגים מוסתרים באלי אקספרס - הצטרפו לקבוצה!</title>
+    <meta name="description" content="קבלו כל יום את הדילים הכי חמים על מותגים כמו ZARA, BERSHKA, MANGO ועוד - ישירות מאלי אקספרס ברבע מחיר!">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&display=swap" rel="stylesheet">
     <style>
-        /* הגדרות פונט ורקע כללי */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #fdf2f8 0%, #f3e8ff 100%);
-            margin: 0;
-            padding: 20px;
+            font-family: 'Heebo', sans-serif;
+            background: #0a0a0a;
+            color: #fff;
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            padding: 40px 20px 30px;
             text-align: center;
-            color: #333;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            overflow: hidden;
         }
-        
-        /* קונטיינר מרכזי עם עיצוב נעים */
-        .container {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 40px;
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,107,107,0.08) 0%, transparent 50%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .hero-content { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255,107,107,0.15);
+            border: 1px solid rgba(255,107,107,0.3);
+            color: #ff6b6b;
+            padding: 6px 16px;
             border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            max-width: 500px;
-            width: 100%;
-            border: 2px solid #e0e7ff;
-            transform: translateY(0);
-        }
-        
-        /* אייקון עם אנימציה */
-        .icon { 
-            font-size: 60px; 
+            font-size: 13px;
+            font-weight: 700;
             margin-bottom: 20px;
-            color: #8b5cf6;
             animation: pulse 2s infinite;
         }
-        
-        /* כותרת ראשית */
-        h1 { 
-            color: #8b5cf6; 
-            margin-bottom: 10px;
-            font-size: 28px;
-            font-weight: bold;
-        }
-        
-        /* כותרת משנית / הסבר */
-        h2 {
-            color: #6b7280;
-            font-weight: normal;
-            margin-bottom: 30px;
-            font-size: 18px;
-        }
-        
-        /* טקסט סטטוס */
-        .loading-text { 
-            font-size: 16px; 
-            margin-top: 20px;
-            color: #6b7280;
-        }
-        
-        /* ספינר (גלגל טעינה) */
-        .spinner {
-            border: 4px solid rgba(139, 92, 246, 0.1);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            border-left-color: #8b5cf6;
-            animation: spin 1s ease infinite;
-            margin: 20px auto;
-        }
-        
-        /* תיבת סטטוס ירוקה */
-        .status {
-            background: #dcfce7;
-            color: #166534;
-            padding: 10px 20px;
-            border-radius: 25px;
-            display: inline-block;
-            margin: 15px 0;
-            font-weight: bold;
-            font-size: 14px;
-        }
-        
-        /* קישור גיבוי (כפתור ידני) */
-        .backup-link {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #e5e7eb;
-        }
-        
-        .backup-btn {
-            background: #25D366;
-            color: white;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 25px;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.4);
-        }
-        
-        .backup-btn:hover {
-            background: #20b85a;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(37, 211, 102, 0.5);
-        }
-        
-        /* אנימציות */
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
+
         @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+            0%, 100% { box-shadow: 0 0 0 0 rgba(255,107,107,0.3); }
+            50% { box-shadow: 0 0 0 10px rgba(255,107,107,0); }
         }
-        
-        /* רספונסיביות למובייל */
+
+        .logo-area {
+            margin-bottom: 20px;
+        }
+
+        .logo-text {
+            font-size: 42px;
+            font-weight: 900;
+            letter-spacing: 6px;
+            background: linear-gradient(135deg, #fff 0%, #e0e0e0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo-sub {
+            font-size: 14px;
+            color: rgba(255,255,255,0.5);
+            letter-spacing: 3px;
+            margin-top: 4px;
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 800;
+            line-height: 1.4;
+            margin-bottom: 12px;
+        }
+
+        h1 span { color: #ff6b6b; }
+
+        .hero-desc {
+            font-size: 17px;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        /* Stats */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-num {
+            font-size: 32px;
+            font-weight: 900;
+            color: #ff6b6b;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: rgba(255,255,255,0.5);
+            margin-top: 2px;
+        }
+
+        /* CTA Buttons */
+        .cta-section {
+            padding: 0 20px 30px;
+            background: linear-gradient(180deg, #0f3460 0%, #1a1a2e 100%);
+        }
+
+        .cta-buttons {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .cta-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 16px 24px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 700;
+            font-family: 'Heebo', sans-serif;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-btn:hover::after { left: 100%; }
+
+        .cta-whatsapp {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: #fff;
+            box-shadow: 0 6px 25px rgba(37,211,102,0.35);
+        }
+
+        .cta-whatsapp:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 35px rgba(37,211,102,0.45);
+        }
+
+        .cta-telegram {
+            background: linear-gradient(135deg, #0088cc 0%, #006daa 100%);
+            color: #fff;
+            box-shadow: 0 6px 25px rgba(0,136,204,0.35);
+        }
+
+        .cta-telegram:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 35px rgba(0,136,204,0.45);
+        }
+
+        .cta-icon { font-size: 24px; }
+
+        .cta-text { display: flex; flex-direction: column; align-items: flex-start; }
+
+        .cta-main { font-size: 18px; }
+
+        .cta-sub { font-size: 12px; font-weight: 400; opacity: 0.85; }
+
+        .members-count {
+            text-align: center;
+            margin-top: 12px;
+            font-size: 13px;
+            color: rgba(255,255,255,0.4);
+        }
+
+        /* Brands Section */
+        .brands {
+            padding: 35px 20px;
+            background: #0a0a0a;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .brand-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .brand-tag {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.7);
+            transition: all 0.3s;
+        }
+
+        .brand-tag:hover {
+            border-color: #ff6b6b;
+            color: #ff6b6b;
+            background: rgba(255,107,107,0.08);
+        }
+
+        /* Benefits */
+        .benefits {
+            padding: 35px 20px;
+            background: #111;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .benefit {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 20px 14px;
+            text-align: center;
+        }
+
+        .benefit-icon { font-size: 32px; margin-bottom: 8px; }
+
+        .benefit-title {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .benefit-desc {
+            font-size: 12px;
+            color: rgba(255,255,255,0.5);
+            line-height: 1.5;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 35px 20px;
+            background: #0a0a0a;
+        }
+
+        .testimonial-list {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .testimonial {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .testimonial-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .testimonial-text {
+            font-size: 14px;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.6;
+        }
+
+        .testimonial-name {
+            font-size: 12px;
+            color: rgba(255,255,255,0.4);
+            margin-top: 4px;
+        }
+
+        /* Example deals */
+        .examples {
+            padding: 35px 20px;
+            background: #111;
+        }
+
+        .deal-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .deal {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 16px 10px;
+            text-align: center;
+        }
+
+        .deal-emoji { font-size: 36px; margin-bottom: 8px; }
+
+        .deal-name {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .deal-prices { display: flex; justify-content: center; gap: 8px; align-items: center; }
+
+        .deal-original {
+            font-size: 12px;
+            color: rgba(255,255,255,0.3);
+            text-decoration: line-through;
+        }
+
+        .deal-sale {
+            font-size: 16px;
+            font-weight: 800;
+            color: #ff6b6b;
+        }
+
+        /* Bottom CTA */
+        .bottom-cta {
+            padding: 35px 20px 40px;
+            background: linear-gradient(180deg, #0a0a0a 0%, #1a1a2e 100%);
+            text-align: center;
+        }
+
+        .bottom-cta h2 {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .bottom-cta p {
+            color: rgba(255,255,255,0.5);
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .urgency {
+            display: inline-block;
+            background: rgba(255,107,107,0.12);
+            border: 1px solid rgba(255,107,107,0.25);
+            color: #ff6b6b;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 20px;
+            text-align: center;
+            font-size: 12px;
+            color: rgba(255,255,255,0.25);
+            background: #1a1a2e;
+        }
+
+        .footer a { color: rgba(255,255,255,0.35); text-decoration: none; }
+
+        /* Mobile */
         @media (max-width: 480px) {
-            .container { 
-                padding: 30px 20px; 
-                margin: 10px;
-            }
+            .hero { padding: 30px 16px 20px; }
+            .logo-text { font-size: 34px; letter-spacing: 4px; }
             h1 { font-size: 24px; }
-            h2 { font-size: 16px; }
-            .backup-btn { padding: 10px 20px; font-size: 15px; }
+            .hero-desc { font-size: 15px; }
+            .stat-num { font-size: 26px; }
+            .benefits-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+            .deal-grid { grid-template-columns: 1fr 1fr; }
+            .deal:nth-child(3) { grid-column: span 2; max-width: 60%; margin: 0 auto; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="icon">🚀</div>
-        <h1>מיד מצטרף/ת לקבוצה!</h1>
-        <h2>פותחים/ות לך את וואטסאפ...</h2>
-        
-        <div class="status">✅ מעבדים את הבקשה</div>
-        
-        <div class="spinner"></div>
-        <p class="loading-text">מעבירים אותך אוטומטית תוך שניות ספורות</p>
-        
-        <div class="backup-link">
-            <p><small>לא עובד? לחץ/י כאן:</small></p>
-            <a href="#" class="backup-btn" id="backup-whatsapp-link">
-                📱 הצטרף/י לקבוצה ידנית
-            </a>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="hero-content">
+        <div class="badge">🔥 +5,000 חברים כבר בפנים</div>
+
+        <div class="logo-area">
+            <div class="logo-text">ZARA</div>
+            <div class="logo-sub">מותגים מוסתרים באלי אקספרס</div>
+        </div>
+
+        <h1>קונים <span>ZARA, MANGO, BERSHKA</span><br>ברבע מחיר מאלי אקספרס</h1>
+
+        <p class="hero-desc">אנחנו מוצאים כל יום את המוצרים הכי שווים של המותגים הכי חמים - ישירות מהמפעלים בסין, במחירים שלא תאמינו 🤯</p>
+
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-num">29</div>
+                <div class="stat-label">קבוצות פעילות</div>
+            </div>
+            <div class="stat">
+                <div class="stat-num">5K+</div>
+                <div class="stat-label">חברים</div>
+            </div>
+            <div class="stat">
+                <div class="stat-num">80%</div>
+                <div class="stat-label">הנחה ממחיר חנות</div>
+            </div>
         </div>
     </div>
+</section>
 
-    <script>
-        // *** רשימת הקבוצות המלאה שלך (29 קבוצות) ***
-        const WHATSAPP_GROUPS = [
-            'Lem2imZ9RrA0FVh4brDcrg', 'Hgiqgj9lUJAByeToPTGwVo', 'Dgkx0K8KQZOBHe4yCJAfYM',
-            'E0SSept47K2339QngQKYlM', 'H6hIQDfCXYq0u7SkRFBAQa', 'L7jlrsDP6F88834HEJFk4N',
-            'GyJuG9iLOiu7bslizSvjfN', 'GwISLYKaOW9GE6fUv9q9BS', 'Ik3UTQ8JJI3IJTYaCDfyR1',
-            'HoL6F41U5027sqToZ9tLlS', 'GVYiswGnuh76sGp3N2mpvQ', 'L63iIDeleUF6FECQgkarxN',
-            'JsoUQukSJpf68DXAfSDzl1', 'CwZGDsNRPFRG25pSKOeJ57', 'KNC63eGLJjs7yCwtOkp2w2',
-            'KiauMRed47T6x6xceqjp49', 'I57gqxlwpKeGryAGAchgKJ', 'BZLzmVO6HN53oMDnc1ybCa',
-            'JDWFq2cnuAp9z8TQR0EKHM', 'EtK89pHcLp96YN4S5tzvqM', 'CjnFFMHD4Qk62989HbRe42',
-            'Fc2LnWE59tjB3Zq4xN156I', 'HQSazYaMnNzJz63fC5RDBf', 'F8XXrv2UnOYGx5SboKtPTY',
-            'KxxbRODukK16P0BIPOPd90', 'Irp0Lx5ScqQAH3b1Vii39M', 'BkFqv6JO5eKAvMvXjCDHzk',
-            'BnpVsiBfpaEIsGHUxXe0L9', 'E5Jsv9ru0w722ogoJ09qRQ'
-        ];
+<!-- CTA Buttons -->
+<section class="cta-section">
+    <div class="cta-buttons">
+        <a href="#" id="whatsapp-btn" class="cta-btn cta-whatsapp" onclick="joinWhatsApp(event)">
+            <span class="cta-icon">💬</span>
+            <span class="cta-text">
+                <span class="cta-main">הצטרפו לקבוצת WhatsApp</span>
+                <span class="cta-sub">דילים יומיים + עדכונים בזמן אמת</span>
+            </span>
+        </a>
 
-        // הגרלת קבוצה אחת מתוך הרשימה בכל טעינת דף
-        const randomGroupIndex = Math.floor(Math.random() * WHATSAPP_GROUPS.length);
-        const WHATSAPP_GROUP_CODE = WHATSAPP_GROUPS[randomGroupIndex];
+        <a href="https://t.me/zara4everybody" target="_blank" class="cta-btn cta-telegram">
+            <span class="cta-icon">✈️</span>
+            <span class="cta-text">
+                <span class="cta-main">הצטרפו לערוץ Telegram</span>
+                <span class="cta-sub">702 עוקבים | כל הדילים במקום אחד</span>
+            </span>
+        </a>
+    </div>
+    <div class="members-count">🟢 42 אנשים הצטרפו היום</div>
+</section>
 
-        // בניית הקישורים
-        const webLink = `https://chat.whatsapp.com/${WHATSAPP_GROUP_CODE}`;
-        const appLink = `whatsapp://chat?code=${WHATSAPP_GROUP_CODE}`; 
+<!-- Brands -->
+<section class="brands">
+    <div class="section-title">מותגים שאנחנו מוצאים באלי אקספרס</div>
+    <div class="brand-grid">
+        <span class="brand-tag">ZARA</span>
+        <span class="brand-tag">BERSHKA</span>
+        <span class="brand-tag">MANGO</span>
+        <span class="brand-tag">MASSIMO DUTTI</span>
+        <span class="brand-tag">ALO YOGA</span>
+        <span class="brand-tag">NIKE</span>
+        <span class="brand-tag">ADIDAS</span>
+        <span class="brand-tag">H&M</span>
+        <span class="brand-tag">PULL&BEAR</span>
+        <span class="brand-tag">THE NORTH FACE</span>
+        <span class="brand-tag">LULULEMON</span>
+        <span class="brand-tag">CALVIN KLEIN</span>
+    </div>
+</section>
 
-        function attemptToOpenApp() {
-            // ניסיון ראשון - פתיחת האפליקציה ישירות
-            window.location.href = appLink;
+<!-- Benefits -->
+<section class="benefits">
+    <div class="section-title">למה להצטרף?</div>
+    <div class="benefits-grid">
+        <div class="benefit">
+            <div class="benefit-icon">💰</div>
+            <div class="benefit-title">חיסכון של 70-90%</div>
+            <div class="benefit-desc">אותם מוצרים מאותם מפעלים, בלי תיוג המותג</div>
+        </div>
+        <div class="benefit">
+            <div class="benefit-icon">🔍</div>
+            <div class="benefit-title">חיפוש AI חכם</div>
+            <div class="benefit-desc">מנוע בינה מלאכותית שמוצא את הדילים הכי טובים</div>
+        </div>
+        <div class="benefit">
+            <div class="benefit-icon">📦</div>
+            <div class="benefit-title">משלוח לישראל</div>
+            <div class="benefit-desc">כל המוצרים עם משלוח חינם או זול לישראל</div>
+        </div>
+        <div class="benefit">
+            <div class="benefit-icon">⚡</div>
+            <div class="benefit-title">עדכונים יומיים</div>
+            <div class="benefit-desc">דילים חדשים כל יום ישירות לטלפון</div>
+        </div>
+    </div>
+</section>
 
-            // גיבוי - אם האפליקציה לא נפתחה תוך 1.2 שניות, העברה לגרסת הווב
-            setTimeout(() => {
-                window.location.href = webLink;
-            }, 1200); 
-        }
+<!-- Example Deals -->
+<section class="examples">
+    <div class="section-title">דוגמאות לדילים מהקבוצה</div>
+    <div class="deal-grid">
+        <div class="deal">
+            <div class="deal-emoji">👗</div>
+            <div class="deal-name">שמלת ZARA</div>
+            <div class="deal-prices">
+                <span class="deal-original">₪289</span>
+                <span class="deal-sale">₪45</span>
+            </div>
+        </div>
+        <div class="deal">
+            <div class="deal-emoji">👟</div>
+            <div class="deal-name">נעלי NIKE</div>
+            <div class="deal-prices">
+                <span class="deal-original">₪499</span>
+                <span class="deal-sale">₪89</span>
+            </div>
+        </div>
+        <div class="deal">
+            <div class="deal-emoji">👜</div>
+            <div class="deal-name">תיק MANGO</div>
+            <div class="deal-prices">
+                <span class="deal-original">₪350</span>
+                <span class="deal-sale">₪52</span>
+            </div>
+        </div>
+    </div>
+</section>
 
-        // עדכון טקסטים חזותיים בזמן ההמתנה
-        function updateStatus() {
-            const statusElement = document.querySelector('.status');
-            const loadingTextElement = document.querySelector('.loading-text');
-            
-            setTimeout(() => {
-                statusElement.innerHTML = '🔄 מתחבר/ת לוואטסאפ';
-                loadingTextElement.innerHTML = 'פותחים/ות את האפליקציה עבורך...';
-            }, 800);
-            
-            setTimeout(() => {
-                statusElement.innerHTML = '📱 מפעיל/ה וואטסאפ';
-            }, 1500);
-        }
+<!-- Testimonials -->
+<section class="testimonials">
+    <div class="section-title">מה אומרים עלינו</div>
+    <div class="testimonial-list">
+        <div class="testimonial">
+            <div class="testimonial-avatar">🙋‍♀️</div>
+            <div>
+                <div class="testimonial-text">"הזמנתי 3 שמלות שנראות בדיוק כמו ZARA ושילמתי פחות ממאה שקל על הכל! מטורף"</div>
+                <div class="testimonial-name">שירה מ., תל אביב</div>
+            </div>
+        </div>
+        <div class="testimonial">
+            <div class="testimonial-avatar">💁‍♀️</div>
+            <div>
+                <div class="testimonial-text">"הקבוצה הזו חוסכת לי אלפי שקלים בשנה. כל פעם שאני רוצה משהו, אני קודם בודקת פה"</div>
+                <div class="testimonial-name">מיכל ר., חיפה</div>
+            </div>
+        </div>
+        <div class="testimonial">
+            <div class="testimonial-avatar">🧑</div>
+            <div>
+                <div class="testimonial-text">"מצאתי פה נעלי ספורט ב-89 שקל שעולות 500+ בחנות. המשלוח הגיע תוך שבועיים"</div>
+                <div class="testimonial-name">דני א., ירושלים</div>
+            </div>
+        </div>
+    </div>
+</section>
 
-        // הפעלה אוטומטית לאחר שנייה אחת
-        window.onload = function() {
-            // עדכון הקישור בכפתור הגיבוי הידני
-            document.getElementById('backup-whatsapp-link').href = webLink;
+<!-- Bottom CTA -->
+<section class="bottom-cta">
+    <div class="urgency">⏰ מקומות מוגבלים - הקבוצות מתמלאות!</div>
+    <h2>מוכנים לחסוך?</h2>
+    <p>הצטרפו עכשיו ותתחילו לקבל דילים מטורפים כל יום</p>
 
-            setTimeout(() => {
-                updateStatus();
-                attemptToOpenApp();
-            }, 1000);
-        };
-    </script>
+    <div class="cta-buttons" style="max-width:500px;margin:0 auto;">
+        <a href="#" class="cta-btn cta-whatsapp" onclick="joinWhatsApp(event)">
+            <span class="cta-icon">💬</span>
+            <span class="cta-text">
+                <span class="cta-main">הצטרפו ל-WhatsApp עכשיו</span>
+                <span class="cta-sub">חינם לגמרי, אפשר לצאת בכל עת</span>
+            </span>
+        </a>
+        <a href="https://t.me/zara4everybody" target="_blank" class="cta-btn cta-telegram">
+            <span class="cta-icon">✈️</span>
+            <span class="cta-text">
+                <span class="cta-main">הצטרפו ל-Telegram</span>
+                <span class="cta-sub">ערוץ עם כל הדילים + חיפוש חכם</span>
+            </span>
+        </a>
+    </div>
+</section>
+
+<!-- Footer -->
+<div class="footer">
+    <p>מנוע חיפוש חכם: <a href="https://alifindme.com">alifindme.com</a></p>
+    <p style="margin-top:6px;">© 2026 כל הזכויות שמורות</p>
+</div>
+
+<script>
+    // 29 WhatsApp groups - random selection
+    const WHATSAPP_GROUPS = [
+        'Lem2imZ9RrA0FVh4brDcrg', 'Hgiqgj9lUJAByeToPTGwVo', 'Dgkx0K8KQZOBHe4yCJAfYM',
+        'E0SSept47K2339QngQKYlM', 'H6hIQDfCXYq0u7SkRFBAQa', 'L7jlrsDP6F88834HEJFk4N',
+        'GyJuG9iLOiu7bslizSvjfN', 'GwISLYKaOW9GE6fUv9q9BS', 'Ik3UTQ8JJI3IJTYaCDfyR1',
+        'HoL6F41U5027sqToZ9tLlS', 'GVYiswGnuh76sGp3N2mpvQ', 'L63iIDeleUF6FECQgkarxN',
+        'JsoUQukSJpf68DXAfSDzl1', 'CwZGDsNRPFRG25pSKOeJ57', 'KNC63eGLJjs7yCwtOkp2w2',
+        'KiauMRed47T6x6xceqjp49', 'I57gqxlwpKeGryAGAchgKJ', 'BZLzmVO6HN53oMDnc1ybCa',
+        'JDWFq2cnuAp9z8TQR0EKHM', 'EtK89pHcLp96YN4S5tzvqM', 'CjnFFMHD4Qk62989HbRe42',
+        'Fc2LnWE59tjB3Zq4xN156I', 'HQSazYaMnNzJz63fC5RDBf', 'F8XXrv2UnOYGx5SboKtPTY',
+        'KxxbRODukK16P0BIPOPd90', 'Irp0Lx5ScqQAH3b1Vii39M', 'BkFqv6JO5eKAvMvXjCDHzk',
+        'BnpVsiBfpaEIsGHUxXe0L9', 'E5Jsv9ru0w722ogoJ09qRQ'
+    ];
+
+    function joinWhatsApp(e) {
+        e.preventDefault();
+        const code = WHATSAPP_GROUPS[Math.floor(Math.random() * WHATSAPP_GROUPS.length)];
+        // Try app first, fallback to web
+        window.location.href = `whatsapp://chat?code=${code}`;
+        setTimeout(() => {
+            window.location.href = `https://chat.whatsapp.com/${code}`;
+        }, 1200);
+    }
+
+    // Dynamic "joined today" counter (random but consistent per day)
+    const today = new Date().toDateString();
+    let hash = 0;
+    for (let i = 0; i < today.length; i++) hash = today.charCodeAt(i) + ((hash << 5) - hash);
+    const joined = 28 + Math.abs(hash % 35);
+    document.querySelector('.members-count').innerHTML = `🟢 ${joined} אנשים הצטרפו היום`;
+</script>
+
 </body>
 </html>
