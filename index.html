@@ -640,6 +640,8 @@
 </div>
 
 <script>
+    // === ADVANCED TRACKING FOR WHATSAPP LANDING PAGE ===
+
     // 29 WhatsApp groups - random selection
     const WHATSAPP_GROUPS = [
         'Lem2imZ9RrA0FVh4brDcrg', 'Hgiqgj9lUJAByeToPTGwVo', 'Dgkx0K8KQZOBHe4yCJAfYM',
@@ -654,27 +656,132 @@
         'BnpVsiBfpaEIsGHUxXe0L9', 'E5Jsv9ru0w722ogoJ09qRQ'
     ];
 
+    // 1. Track page view with source info
+    (function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const source = urlParams.get('utm_source') || 'direct';
+        const medium = urlParams.get('utm_medium') || 'none';
+        const campaign = urlParams.get('utm_campaign') || 'none';
+        const ref = document.referrer || 'direct';
+        let referrerSource = 'direct';
+        if (ref.includes('facebook') || ref.includes('fb.com')) referrerSource = 'facebook';
+        else if (ref.includes('instagram')) referrerSource = 'instagram';
+        else if (ref.includes('google')) referrerSource = 'google';
+        else if (ref.includes('t.me') || ref.includes('telegram')) referrerSource = 'telegram';
+        else if (ref !== 'direct') referrerSource = ref;
+
+        gtag('event', 'whatsapp_page_view', {
+            event_category: 'whatsapp_landing',
+            event_label: source !== 'direct' ? source : referrerSource,
+            utm_source: source,
+            utm_medium: medium,
+            utm_campaign: campaign,
+            referrer_source: referrerSource,
+            referrer_full: ref
+        });
+    })();
+
+    // 2. Track scroll depth
+    let scrollTracked = {};
+    window.addEventListener('scroll', function() {
+        const scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+        [25, 50, 75, 100].forEach(threshold => {
+            if (scrollPercent >= threshold && !scrollTracked[threshold]) {
+                scrollTracked[threshold] = true;
+                gtag('event', 'whatsapp_scroll', {
+                    event_category: 'whatsapp_engagement',
+                    event_label: threshold + '%',
+                    value: threshold
+                });
+            }
+        });
+    });
+
+    // 3. Track time on page
+    [10, 30, 60, 120].forEach(seconds => {
+        setTimeout(() => {
+            gtag('event', 'whatsapp_time_on_page', {
+                event_category: 'whatsapp_engagement',
+                event_label: seconds + 's',
+                value: seconds
+            });
+        }, seconds * 1000);
+    });
+
+    // 4. Track WhatsApp join with group details
     function joinWhatsApp(e) {
         e.preventDefault();
-        // Track click in Google Analytics
-        gtag('event', 'click_whatsapp', { event_category: 'CTA', event_label: 'WhatsApp Join' });
-        // Track in Facebook Pixel
-        if (typeof fbq !== 'undefined') fbq('track', 'Lead', { content_name: 'WhatsApp Join' });
-
         const code = WHATSAPP_GROUPS[Math.floor(Math.random() * WHATSAPP_GROUPS.length)];
+        const groupIndex = WHATSAPP_GROUPS.indexOf(code) + 1;
+
+        // Track in Google Analytics with details
+        gtag('event', 'click_whatsapp', {
+            event_category: 'CTA',
+            event_label: 'WhatsApp Join',
+            group_number: groupIndex,
+            group_code: code.substring(0, 8) + '...'
+        });
+        gtag('event', 'whatsapp_group_join', {
+            event_category: 'whatsapp_conversion',
+            event_label: 'group_' + groupIndex,
+            value: 1
+        });
+
+        // Track in Facebook Pixel
+        if (typeof fbq !== 'undefined') fbq('track', 'Lead', { content_name: 'WhatsApp Join', content_category: 'group_' + groupIndex });
+
         window.location.href = `whatsapp://chat?code=${code}`;
         setTimeout(() => {
             window.location.href = `https://chat.whatsapp.com/${code}`;
         }, 1200);
     }
 
-    // Track Telegram clicks
+    // 5. Track Telegram clicks
     document.querySelectorAll('.cta-telegram').forEach(btn => {
         btn.addEventListener('click', () => {
             gtag('event', 'click_telegram', { event_category: 'CTA', event_label: 'Telegram Join' });
+            gtag('event', 'telegram_channel_join', {
+                event_category: 'whatsapp_conversion',
+                event_label: 'zara4everybody',
+                value: 1
+            });
             if (typeof fbq !== 'undefined') fbq('track', 'Lead', { content_name: 'Telegram Join' });
         });
     });
+
+    // 6. Track bounce - user leaving without clicking WhatsApp/Telegram
+    let hasConverted = false;
+    document.querySelectorAll('.cta-whatsapp, .cta-telegram').forEach(btn => {
+        btn.addEventListener('click', () => { hasConverted = true; });
+    });
+    window.addEventListener('beforeunload', function() {
+        if (!hasConverted) {
+            gtag('event', 'whatsapp_bounce', {
+                event_category: 'whatsapp_engagement',
+                event_label: 'left_without_joining',
+                transport_type: 'beacon'
+            });
+        }
+    });
+
+    // 7. Track CTA button visibility (did they even see the button?)
+    if ('IntersectionObserver' in window) {
+        const ctaBtn = document.querySelector('.cta-whatsapp');
+        if (ctaBtn) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        gtag('event', 'whatsapp_cta_visible', {
+                            event_category: 'whatsapp_engagement',
+                            event_label: 'cta_button_seen'
+                        });
+                        observer.disconnect();
+                    }
+                });
+            }, { threshold: 0.5 });
+            observer.observe(ctaBtn);
+        }
+    }
 
     // Dynamic "joined today" counter (random but consistent per day)
     const today = new Date().toDateString();
